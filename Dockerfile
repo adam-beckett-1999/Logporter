@@ -1,5 +1,5 @@
 # Build image
-FROM golang:1.23-alpine3.20 AS build
+FROM golang:1.23-alpine3.23 AS build
 WORKDIR /logporter
 COPY go.mod go.sum ./
 RUN go mod download
@@ -8,6 +8,6 @@ ARG TARGETARCH TARGETOS
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /logporter
 
 # Final image
-FROM alpine:3.20
+FROM alpine:3.23
 COPY --from=build /logporter /usr/local/bin/
 ENTRYPOINT ["logporter"]
