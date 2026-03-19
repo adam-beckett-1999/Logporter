@@ -1,5 +1,5 @@
 # Build image
-FROM golang:1.23-alpine3.23 AS build
+FROM golang:1.23-alpine3.21 AS build
 WORKDIR /logporter
 COPY go.mod go.sum ./
 RUN go mod download
